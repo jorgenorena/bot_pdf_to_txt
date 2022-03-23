@@ -14,23 +14,23 @@ import os
 
 # Funcionalidad básica del bot
 
-help_text = '''Para obtener el texto, basta enviar un pdf.'''
+help_text = '''Para obtener el pdf con el texto buscable, basta enviar el pdf como archivo.'''
 
 unknown_text = '''Lo sentimos, no reconocemos lo ingresado. 
         Entre "/ayuda" para obtener información.'''
 
 # Resolución de la imagen en ppi, mayor resolución da mejores resultados pero 
 # consume más memoria.
-resolution = 700 
+resolution = 300 
 
 # Token único para comunicarse con el bot
-bot_token = "Insert token here!!!"
+bot_token = "¡¡¡Inserte aquí el token!!!!"
 updater = Updater(bot_token, use_context=True)
   
 # Mensaje que se despliega la primera vez que se chatea con el bot  
 def start(update: Update, context: CallbackContext):
     update.message.reply_text(
-        "¡Hola! Este bot extrae el texto de un pdf.")
+        "¡Hola! Este bot toma un pdf escaneado y te lo regresa con el texto.")
     update.message.reply_text(help_text)
 
 # Contiene el mensaje de ayuda del bot
@@ -53,7 +53,7 @@ def download_file(update: Update, context: CallbackContext):
     update.message.reply_text("Archivo procesado con éxito.")
 
     # Entregar el resultado
-    with open(file_name[:-4] + '.txt', 'rb') as result:
+    with open(file_name[:-4] + '_anotado.pdf', 'rb') as result:
         update.message.reply_document(result)
 
     # Limpiar
